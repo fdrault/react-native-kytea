@@ -1,0 +1,5 @@
+# Ignore everything in this directory
+# This folder is used for cmake build
+*
+# Except this file
+!.gitignore
