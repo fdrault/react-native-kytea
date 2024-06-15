@@ -3,9 +3,9 @@ import { TurboModuleRegistry } from "react-native";
 
 export interface Spec extends TurboModule {
   /**
-   * Gets the base directory of the documents storage
+   * Gets the path of Kytea model binary
    */
-  getBaseDirectory(): string;
+  getModelPath(): string;
 }
 
 let module: Spec | null;

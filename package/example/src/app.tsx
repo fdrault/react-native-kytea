@@ -56,7 +56,7 @@ function Section({children, title}: SectionProps): React.JSX.Element {
 }
 console.log(
   'Kytea Path',
-  getNativeKyteaPlatformContextTurboModule().getBaseDirectory(),
+  getNativeKyteaPlatformContextTurboModule().getModelPath(),
 );
 export const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
