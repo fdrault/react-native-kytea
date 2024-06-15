@@ -14,14 +14,6 @@
     "react-native": "0.74.1",
     "react-native-kytea": "file:.."
   },
-  "codegenConfig": {
-    "name": "KyteaSpec",
-    "type": "modules",
-    "jsSrcsDir": "src",
-    "android": {
-      "javaPackageName": "com.reactnativekyteaexample"
-    }
-  },
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@babel/preset-env": "^7.20.0",

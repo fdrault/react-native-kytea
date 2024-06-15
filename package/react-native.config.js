@@ -13,7 +13,7 @@ module.exports = {
       android: {
         cxxModuleCMakeListsModuleName: "react-native-kytea",
         cxxModuleCMakeListsPath: "CMakeLists.txt",
-        cxxModuleHeaderName: "NativeKyteaModule",
+        // cxxModuleHeaderName: "NativeKyteaModule",
       },
     },
   },

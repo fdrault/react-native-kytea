@@ -12,8 +12,9 @@ add_library(
 )
 
 # Add headers search paths
+target_include_directories(react-native-kytea PUBLIC ../cpp)
+
 #target_include_directories(react-native-mmkv PUBLIC ../MMKV/Core)
-#target_include_directories(react-native-mmkv PUBLIC ../cpp)
 
 # Add MMKV core dependency
 #add_subdirectory(../MMKV/Core core)

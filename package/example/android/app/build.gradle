@@ -103,11 +103,6 @@ android {
         }
     }
 
-    externalNativeBuild {
-       cmake {
-           path "../../../android/CMakeLists.txt"
-       }
-   }
 }
 
 dependencies {

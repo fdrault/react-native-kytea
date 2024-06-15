@@ -1,7 +1,8 @@
 {
   "name": "react-native-kytea",
   "version": "0.0.1",
-  "main": "src/index",
+  "main": "src/index.ts",
+  "source": "src/index.ts",
   "scripts": {
     "codegen": "react-native codegen"
   },
@@ -15,7 +16,12 @@
     "jsSrcsDir": "src"
   },
   "files": [
-    "*"
+    "README.md",
+    "android",
+    "ios",
+    "dist",
+    "src",
+    "kytea"
   ],
   "devDependencies": {},
   "engines": {

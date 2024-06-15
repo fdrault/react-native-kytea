@@ -17,14 +17,19 @@ import {
   View,
 } from 'react-native';
 
+import {
+  checkImport,
+  getNativeKyteaPlatformContextTurboModule,
+} from 'react-native-kytea';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
-
 function Section({children, title}: SectionProps): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
+
+  checkImport();
   return (
     <View style={styles.sectionContainer}>
       <Text
@@ -48,7 +53,10 @@ function Section({children, title}: SectionProps): React.JSX.Element {
     </View>
   );
 }
-
+console.log(
+  'Kytea Path',
+  getNativeKyteaPlatformContextTurboModule().getBaseDirectory(),
+);
 export const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
