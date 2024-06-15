@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "react": "18.2.0",
-    "react-native": "0.74.1"
+    "react-native": "0.74.1",
+    "react-native-kytea": "file:.."
   },
   "codegenConfig": {
     "name": "KyteaSpec",

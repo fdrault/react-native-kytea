@@ -1,0 +1,24 @@
+{
+  "name": "react-native-kytea",
+  "version": "0.0.1",
+  "main": "src/index",
+  "scripts": {
+    "codegen": "react-native codegen"
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-native": "0.74.1"
+  },
+  "codegenConfig": {
+    "name": "KyteaSpec",
+    "type": "modules",
+    "jsSrcsDir": "src"
+  },
+  "files": [
+    "*"
+  ],
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18"
+  }
+}
