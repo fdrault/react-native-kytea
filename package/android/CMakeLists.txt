@@ -1,14 +1,18 @@
 cmake_minimum_required(VERSION 3.9.0)
-project(ReactNativeMmkv)
+project(ReactNativeKytea)
+
+ message("ReactNativeKytea android/CMakeLists.txt")
+
+
 
 set(CMAKE_VERBOSE_MAKEFILE ON)
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
 # Compile sources
 add_library(
         react-native-kytea
         SHARED
-        ../cpp/test.cpp
+        ../cpp/NativeKyteaModule.cpp
 )
 
 # Add headers search paths

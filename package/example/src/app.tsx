@@ -19,6 +19,7 @@ import {
 
 import {
   checkImport,
+  getKyteaTurboModule,
   getNativeKyteaPlatformContextTurboModule,
 } from 'react-native-kytea';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
@@ -78,9 +79,8 @@ export const App = () => {
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
           <Section title="Step One">Hello World!</Section>
-          <Text>
-            Deserunt veniam non nulla nisi elit eu laboris quis voluptate
-            aliquip id.
+          <Text style={styles.text}>
+            {getKyteaTurboModule().tokenize('Lorem Ipsum')}
           </Text>
         </View>
       </ScrollView>
@@ -104,5 +104,8 @@ const styles = StyleSheet.create({
   },
   highlight: {
     fontWeight: '700',
+  },
+  text: {
+    color: 'white',
   },
 });
