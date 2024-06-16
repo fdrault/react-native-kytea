@@ -20,6 +20,7 @@ jsi::String NativeKyteaModule::tokenize(jsi::Runtime &runtime,
                                         jsi::String input) {
   std::string input_string = input.utf8(runtime);
   Kytea kytea;
+     
 
   // Load a KyTea model from a model file
   //  this can be a binary or text model in any character encoding,

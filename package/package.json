@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "main": "src/index.ts",
   "source": "src/index.ts",
+  "description": "React-native binding for Kyoto Text Analysis Toolkit",
+  "author": "Fabien Drault <fdrault@betomorrow.com> (https://github.com/fdrault)",
+  "homepage": "https://github.com/fdrault",
+  "license": "(MIT & Apache-2.0)",
   "scripts": {
     "prepare": "git submodule update --init --recursive && ./scripts/copy-assets.sh",
     "codegen": "react-native codegen"
@@ -27,5 +31,9 @@
   "devDependencies": {},
   "engines": {
     "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fdrault/react-native-kytea.git"
   }
 }
