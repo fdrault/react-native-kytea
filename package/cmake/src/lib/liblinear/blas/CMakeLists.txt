@@ -1,6 +1,6 @@
 # Mirror path between cmake and kytea path
 file(RELATIVE_PATH relative_path ${CMAKE_SOURCE_DIR} ${CMAKE_CURRENT_LIST_DIR})
-set(CURRENT_PATH "${KYTEA_SOURCE_DIR}/${relative_path}")
+set(CURRENT_PATH "${KYTEA_SOURCE_DIR}/src/lib/liblinear/blas")
 
 # Define the sources
 set(libblas_sources

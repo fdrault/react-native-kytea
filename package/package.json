@@ -1,0 +1,39 @@
+{
+  "name": "react-native-kytea",
+  "version": "0.0.1",
+  "main": "src/index.ts",
+  "source": "src/index.ts",
+  "description": "React-native binding for Kyoto Text Analysis Toolkit",
+  "author": "Fabien Drault <fdrault@betomorrow.com> (https://github.com/fdrault)",
+  "homepage": "https://github.com/fdrault",
+  "license": "(MIT & Apache-2.0)",
+  "scripts": {
+    "prepare": "git submodule update --init --recursive && ./scripts/copy-assets.sh",
+    "codegen": "react-native codegen"
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-native": "0.74.1"
+  },
+  "codegenConfig": {
+    "name": "KyteaSpec",
+    "type": "modules",
+    "jsSrcsDir": "src"
+  },
+  "files": [
+    "README.md",
+    "android",
+    "ios",
+    "dist",
+    "src",
+    "kytea"
+  ],
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fdrault/react-native-kytea.git"
+  }
+}
