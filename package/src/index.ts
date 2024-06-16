@@ -3,7 +3,6 @@ import { getNativeKyteaPlatformContextTurboModule } from "./NativeKyteaPlatformC
 const checkImport = () => {
   console.log("react-native-kytea correctly imported");
 };
-console.log("react-native-kytea global import");
 
 export {
   checkImport,

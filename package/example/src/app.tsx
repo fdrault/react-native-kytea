@@ -6,13 +6,14 @@
  */
 
 import type {PropsWithChildren} from 'react';
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
   Text,
+  TextInput,
   useColorScheme,
   View,
 } from 'react-native';
@@ -59,16 +60,16 @@ console.log(
   getNativeKyteaPlatformContextTurboModule().getModelPath(),
 );
 export const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    backgroundColor: Colors.darker,
   };
+
+  const [input, setInput] = useState('これはテストです。');
 
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+        barStyle={'light-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <ScrollView
@@ -76,11 +77,16 @@ export const App = () => {
         style={backgroundStyle}>
         <View
           style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
+            backgroundColor: Colors.black,
           }}>
-          <Section title="Step One">Hello World!</Section>
+          <Section title="Hello World!" />
+          <TextInput
+            style={styles.inputtext}
+            value={input}
+            onChangeText={setInput}
+          />
           <Text style={styles.text}>
-            {getKyteaTurboModule().tokenize('Lorem Ipsum')}
+            {getKyteaTurboModule().tokenize(input)}
           </Text>
         </View>
       </ScrollView>
@@ -107,5 +113,10 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'white',
+    fontSize: 9,
+  },
+  inputtext: {
+    color: 'white',
+    backgroundColor: '#403939',
   },
 });
