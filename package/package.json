@@ -4,6 +4,7 @@
   "main": "src/index.ts",
   "source": "src/index.ts",
   "scripts": {
+    "prepare": "git submodule update --init --recursive && ./scripts/copy-assets.sh",
     "codegen": "react-native codegen"
   },
   "dependencies": {

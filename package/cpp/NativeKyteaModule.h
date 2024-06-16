@@ -1,6 +1,9 @@
 
 #pragma once
 
+// Cross-Platform Turbo Native Modules with C++
+// https://github.com/reactwg/react-native-new-architecture/blob/main/docs/turbo-modules-xplat.md
+
 #if __has_include(<React-Codegen/KyteaSpecJSI.h>)
 // CocoaPods include (iOS)
 #include <React-Codegen/KyteaSpecJSI.h>

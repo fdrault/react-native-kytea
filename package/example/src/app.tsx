@@ -79,7 +79,7 @@ export const App = () => {
           style={{
             backgroundColor: Colors.black,
           }}>
-          <Section title="Hello World!" />
+          <Section title="Japan !" />
           <TextInput
             style={styles.inputtext}
             value={input}
