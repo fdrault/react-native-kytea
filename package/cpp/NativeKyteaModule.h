@@ -15,6 +15,7 @@
 #endif
 
 #include <iostream>
+#include <kytea/kytea.h>
 #include <string>
 
 namespace facebook::react {
@@ -25,12 +26,13 @@ public:
   NativeKyteaModule(std::shared_ptr<CallInvoker> jsInvoker);
   ~NativeKyteaModule();
 
-  jsi::String tokenize(jsi::Runtime &runtime, jsi::String input);
+  jsi::Array tokenize(jsi::Runtime &runtime, jsi::String input);
 
   bool initialize(jsi::Runtime &runtime, std::string filepath);
 
 private:
   std::string modelPath;
+  kytea::Kytea kytea;
 };
 
 } // namespace facebook::react

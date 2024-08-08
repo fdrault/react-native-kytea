@@ -1,9 +1,9 @@
 #include "NativeKyteaModule.h"
 
+#include <iostream>
 #include <kytea/kytea-config.h>
 #include <kytea/kytea.h>
 #include <kytea/string-util.h>
-#include <iostream>
 #include <sstream>
 #include <string>
 
@@ -16,64 +16,77 @@ NativeKyteaModule::NativeKyteaModule(std::shared_ptr<CallInvoker> jsInvoker)
 
 NativeKyteaModule::~NativeKyteaModule() {}
 
-jsi::String NativeKyteaModule::tokenize(jsi::Runtime &runtime,
-                                        jsi::String input) {
+jsi::Array NativeKyteaModule::tokenize(jsi::Runtime &runtime,
+                                       jsi::String input) {
   std::string input_string = input.utf8(runtime);
-  Kytea kytea;
-     
 
-  // Load a KyTea model from a model file
-  //  this can be a binary or text model in any character encoding,
-  //  it will be detected automatically
-  kytea.readModel(modelPath.c_str());
-
-  // Get the string utility class. This allows you to convert from
-  //  the appropriate string encoding to Kytea's internal format
   StringUtil *util = kytea.getStringUtil();
-
-  // Get the configuration class, this allows you to read or set the
-  //  configuration for the analysis
   KyteaConfig *config = kytea.getConfig();
 
-  // Map a plain text string to a KyteaString, and create a sentence object
   KyteaString surface_string = util->mapString(input_string);
   KyteaSentence sentence(surface_string, util->normalize(surface_string));
 
-  // Find the word boundaries
   kytea.calculateWS(sentence);
-  // Find the pronunciations for each tag level
   for (int i = 0; i < config->getNumTags(); i++)
     kytea.calculateTags(sentence, i);
 
-  // For each word in the sentence
   const KyteaSentence::Words &words = sentence.words;
 
-  std::stringstream output; // Create a stringstream object
+  jsi::Array result(runtime, words.size());
+  for (size_t i = 0; i < words.size(); ++i) {
+    const auto &kyteaWord = words[i];
+    jsi::Object wordObj(runtime);
 
-  for (int i = 0; i < (int)words.size(); i++) {
-    // Append the word to the stringstream
-    output << util->showString(words[i].surface);
-    // For each tag level
-    for (int j = 0; j < (int)words[i].tags.size(); j++) {
-      output << "\t";
-      // Append each of its tags to the stringstream
-      for (int k = 0; k < (int)words[i].tags[j].size(); k++) {
-        output << " " << util->showString(words[i].tags[j][k].first) << "/"
-               << words[i].tags[j][k].second;
-      }
+    wordObj.setProperty(runtime, "surface",
+                        jsi::String::createFromUtf8(
+                            runtime, util->showString(kyteaWord.surface)));
+    wordObj.setProperty(
+        runtime, "norm",
+        jsi::String::createFromUtf8(runtime, util->showString(kyteaWord.norm)));
+
+    jsi::Array tagsArray(runtime, kyteaWord.tags[0].size());
+    for (size_t j = 0; j < kyteaWord.tags[0].size(); ++j) {
+      jsi::Object tagObj(runtime);
+      tagObj.setProperty(
+          runtime, "value",
+          jsi::String::createFromUtf8(
+              runtime, util->showString(kyteaWord.tags[0][j].first)));
+      tagObj.setProperty(runtime, "score",
+                         jsi::Value(kyteaWord.tags[0][j].second));
+      tagsArray.setValueAtIndex(runtime, j, tagObj);
     }
-    output << "\n";
+    wordObj.setProperty(runtime, "tags", tagsArray);
+
+    jsi::Array soundArray(runtime, kyteaWord.tags[1].size());
+    for (size_t k = 0; k < kyteaWord.tags[1].size(); ++k) {
+      jsi::Object soundObj(runtime);
+      soundObj.setProperty(
+          runtime, "value",
+          jsi::String::createFromUtf8(
+              runtime, util->showString(kyteaWord.tags[1][k].first)));
+      soundObj.setProperty(runtime, "score",
+                           jsi::Value(kyteaWord.tags[1][k].second));
+      soundArray.setValueAtIndex(runtime, k, soundObj);
+    }
+    wordObj.setProperty(runtime, "sound", soundArray);
+
+    wordObj.setProperty(runtime, "isCertain", jsi::Value(kyteaWord.isCertain));
+    wordObj.setProperty(runtime, "unknown", jsi::Value(kyteaWord.unknown));
+
+    result.setValueAtIndex(runtime, i, wordObj);
   }
-  output << "\n";
 
-  std::string result = output.str(); // Convert the stringstream to a string
-
-  return jsi::String::createFromUtf8(runtime, result);
+  return result;
 }
 
 bool NativeKyteaModule::initialize(jsi::Runtime &runtime,
                                    std::string filepath) {
   modelPath = filepath;
+
+  // Load a KyTea model from a model file
+  //  this can be a binary or text model in any character encoding,
+  //  it will be detected automatically
+  kytea.readModel(modelPath.c_str());
   return true;
 }
 

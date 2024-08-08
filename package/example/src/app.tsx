@@ -6,7 +6,7 @@
  */
 
 import type {PropsWithChildren} from 'react';
-import React, {useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -66,6 +66,7 @@ export const App = () => {
 
   const [input, setInput] = useState('これはテストです。');
 
+  const result = useMemo(() => getKyteaTurboModule().tokenize(input), [input]);
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
@@ -85,9 +86,7 @@ export const App = () => {
             value={input}
             onChangeText={setInput}
           />
-          <Text style={styles.text}>
-            {getKyteaTurboModule().tokenize(input)}
-          </Text>
+          <Text style={styles.text}>{JSON.stringify(result, null, 2)}</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -114,6 +113,8 @@ const styles = StyleSheet.create({
   text: {
     color: 'white',
     fontSize: 9,
+    flexShrink: 1,
+    flex: 1,
   },
   inputtext: {
     color: 'white',

@@ -3,7 +3,7 @@ import { getNativeKyteaPlatformContextTurboModule } from "./NativeKyteaPlatformC
 
 export interface Spec extends TurboModule {
   initialize: (modelFilePath: string) => boolean;
-  readonly tokenize: (input: string) => string;
+  readonly tokenize: (input: string) => Word[];
 }
 
 let module: Spec | null;
@@ -15,4 +15,18 @@ export function getKyteaTurboModule(): Spec {
     console.log("Kytea initialized ", initialized);
   }
   return module;
+}
+
+export interface Word {
+  surface: string;
+  norm: string;
+  tags: Tag[];
+  sound: Tag[];
+  isCertain: boolean;
+  unknown: boolean;
+}
+
+export interface Tag {
+  value: string;
+  score: number;
 }
