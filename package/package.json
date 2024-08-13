@@ -6,9 +6,10 @@
   "description": "React-native binding for Kyoto Text Analysis Toolkit",
   "author": "Fabien Drault <fdrault@betomorrow.com> (https://github.com/fdrault)",
   "homepage": "https://github.com/fdrault",
-  "license": "(MIT & Apache-2.0)",
+  "license": "Apache-2.0",
   "scripts": {
     "prepare": "git submodule update --init --recursive && ./scripts/copy-assets.sh",
+    "postinstall": "git submodule update --init --recursive && ./scripts/copy-assets.sh",
     "codegen": "react-native codegen"
   },
   "dependencies": {
@@ -22,18 +23,66 @@
   },
   "files": [
     "README.md",
-    "android",
     "ios",
-    "dist",
+    "android/src",
+    "android/gradle.properties",
+    "android/CMakeLists.txt",
+    "android/build.gradle",
+    "cmake",
+    "data",
+    "cpp",
+    "scripts",
+    "kytea",
     "src",
-    "kytea"
+    "react-native-kytea.podspec",
+    "react-native.config.js"
   ],
-  "devDependencies": {},
+  "devDependencies": {
+    "@release-it/conventional-changelog": "^8.0.1",
+    "release-it": "^17.6.0"
+  },
   "engines": {
     "node": ">=18"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fdrault/react-native-kytea.git"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore: release ${version}",
+      "tagName": "v${version}"
+    },
+    "npm": {
+      "publish": true
+    },
+    "github": {
+      "release": true
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": {
+          "name": "conventionalcommits",
+          "types": [
+            {
+              "type": "feat",
+              "section": "✨ Features"
+            },
+            {
+              "type": "fix",
+              "section": "🐛 Bug Fixes"
+            },
+            {
+              "type": "chore(deps)",
+              "section": "🛠️ Dependency Upgrades"
+            },
+            {
+              "type": "docs",
+              "section": "📚 Documentation"
+            }
+          ]
+        }
+      }
+    }
   }
 }
