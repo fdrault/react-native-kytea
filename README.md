@@ -21,7 +21,9 @@ Kytea.tokenize("これはテストです。");
 ### License
 
 The model is licensed under the [Creative Commons Attribution-Share Alike 3.0 License](http://creativecommons.org/licenses/by-sa/3.0/).
+
 The Kytea is licensed under the [Apache License Version 2](http://www.apache.org/licenses/LICENSE-2.0)
+
 This package, react-native-kytea is licensed under [Apache License Version 2](http://www.apache.org/licenses/LICENSE-2.0)
 
 I have no affliation with developpers and contributors of [kytea](https://www.phontron.com/kytea/). If there is any issue with license, please contact me or post an issue.

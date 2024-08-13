@@ -22,7 +22,8 @@
     "jsSrcsDir": "src"
   },
   "files": [
-    "README.md",
+    "../README.md",
+    "../LICENSE",
     "ios",
     "android/src",
     "android/gradle.properties",
