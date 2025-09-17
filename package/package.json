@@ -1,6 +1,6 @@
 {
   "name": "react-native-kytea",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "src/index.ts",
   "source": "src/index.ts",
   "description": "React-native binding for Kyoto Text Analysis Toolkit",
