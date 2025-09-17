@@ -6,7 +6,7 @@ project(ReactNativeKytea)
 
 
 set(CMAKE_VERBOSE_MAKEFILE ON)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 
 # Define the root directory of Kytea library source files
 set(KYTEA_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../kytea")
